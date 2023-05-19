@@ -1,15 +1,13 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import {
   Container,
-  Grid,
-  GridItem,
   Header,
   SearchForm,
   Section,
   Text,
-  Todo,
+  TodoList,
 } from 'components';
 
 export const App = () => {
@@ -48,19 +46,7 @@ export const App = () => {
             <Text textAlign="center">There are no any todos ... </Text>
           )}
 
-          <Grid>
-            {todos.length > 0 &&
-              todos.map((todo, index) => (
-                <GridItem key={todo.id}>
-                  <Todo
-                    id={todo.id}
-                    text={todo.text}
-                    counter={index + 1}
-                    onClick={deleteTodo}
-                  />
-                </GridItem>
-              ))}
-          </Grid>
+          <TodoList />
         </Container>
       </Section>
     </>
