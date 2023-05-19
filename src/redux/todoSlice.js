@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
 
 const todoSlice = createSlice({
   // Ім'я слайсу
@@ -24,3 +26,13 @@ const todoSlice = createSlice({
 export const { addTodo, deleteTodo } = todoSlice.actions;
 // Редюсер слайсу
 export const todoReducer = todoSlice.reducer;
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+export const persistedTodoReducer = persistReducer(
+  persistConfig,
+  todoSlice.reducer
+);
